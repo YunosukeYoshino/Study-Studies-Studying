@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .child {
+        margin-top: 70vh;
+        width: 100px;
+        height: 100px;
+        background-color: rgb(77, 130, 176);
+        transition: 0.4s all;
+      }
+      .child.inView {
+        background-color: rgb(176, 153, 77);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="child"></div>
+    <div class="child child1"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+
+    <script src="./main.js" defer></script>
+  </body>
+</html>
