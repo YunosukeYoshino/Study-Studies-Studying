@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function promiseFactory(count) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            count++; //渡されてきた値をインクリメントする。
+            console.log(
+              `${count}回目のコールです。時刻：[${new Date().toTimeString()}]}]`
+            );
+            if (count === 3) {
+              //3回目のコールでエラー
+              reject(count);
+            } else {
+              resolve(count); //次のthenのコールバック関数の引数にcountが渡る。
+            }
+          }, 1000);
+        });
+      }
+
+      promiseFactory(0)
+        .then((count) => {
+          return promiseFactory(count);
+        })
+        .then((count) => {
+          return promiseFactory(count); //条件分岐で３回目まで実行される
+        })
+        .then((count) => {
+          return promiseFactory(count);
+        })
+        .then((count) => {
+          return promiseFactory(count);
+        })
+        .catch((errorCount) => {
+          console.log(
+            `エラーに飛びました。現在のカウントは${errorCount}です。`
+          );
+        })
+        .finally(() => {
+          console.log("終了します。");
+        });
+    </script>
+  </body>
+</html>
