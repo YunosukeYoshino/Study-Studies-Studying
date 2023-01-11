@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let promiseResolve, promiseReject;
+      //   resolveが呼び出されるとthenが実行される。
+      //   インスタンスの内部のステータスがfulfilledに移行したことを表される。
+      //   rejectが実行されるとrejectedになる
+      // fulfilled|rejectedのいずれかに遷移した状態はsettledという
+      const prom = new Promise((resolve, reject) => {
+        promResolve = resolve;
+        promReject = reject;
+      });
+
+      console.log(prom); //Promise {<pending>}が出力される
+
+      promResolve("引数"); //resolveを実行
+      //   [[PromiseState]]: "fulfilled"
+      //   [[PromiseResult]]: "引数"
+
+      console.log(prom);
+      //   Promise {<fulfilled>: '引数'} fulfilledになる
+    </script>
+  </body>
+</html>
