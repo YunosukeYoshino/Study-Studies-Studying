@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Promise.anyは複数のPromiseインスタンスのいずれかがfulfilledになったタイミングでthenメソッドに処理を移します。
+      // またすべてのインスタンスの状態がrejectedになったときに、catchメソッドを実行する
+      const myResolve = new Promise((resolve) => {
+        setTimeout(() => {
+          resolve("resolveが呼ばれました");
+          console.log("myResolveの実行が終了しました。");
+        }, 200);
+      });
+
+      const myReject = new Promise((_, reject) => {
+        //rejectは使わないため_, reject としておく
+        setTimeout(() => {
+          reject("rejectが呼ばれました");
+          console.log("myRejectの実行が終了しました。");
+        }, 100);
+      });
+
+      Promise.any([myReject, myResolve])
+        .then((value) => {
+          console.log(value);
+        })
+        .catch((erorr) => {
+          console.log(erorr);
+        });
+
+      // 1 myRejectの実行が終了しました。
+      // 2 rejectが呼ばれました
+      // 3 myResolveの実行が終了しました。
+
+      // Promise.anyはいずれかがfulfilledになるのを待ちます。
+      // またすべてのPromise員sつ餡巣がrejectedになったときにはcatchメソッドに処理を移すが、
+      // この時の渡される引数はAggregateErrorというErorrオブジェクトになります。
+    </script>
+  </body>
+</html>

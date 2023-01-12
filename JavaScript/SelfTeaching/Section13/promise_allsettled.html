@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Promise.allSettledは、すべてのPromiseインスタンスの状態が
+      // settled(fulilled or rejected)になったときにthenメソッドに処理を移す
+
+      const myResolve = new Promise((resolve) => {
+        setTimeout(() => {
+          resolve("resolveが呼ばれました");
+          console.log("myResolveの実行が終了しました。");
+        }, 200);
+      });
+      const myReject = new Promise((_, reject) => {
+        //rejectは使わないため_, reject としておく
+        setTimeout(() => {
+          reject("rejectが呼ばれました");
+          console.log("myRejectの実行が終了しました。");
+        }, 100);
+      });
+
+      Promise.allSettled([myReject, myResolve]).then((arry) => {
+        console.log(arry);
+        for (const { status, value, reason } of arry) {
+          console.log(
+            `ステータス：[${status}],値：[${value}],エラー[${reason}]`
+          );
+        }
+      });
+      // 1 myRejectの実行が終了しました。
+      // 1 myResolveの実行が終了しました。
+      // 2 ステータス：[rejected],値：[undefined],エラー[rejectが呼ばれました]
+      // 3 ステータス：[fulfilled],値：[resolveが呼ばれました],エラー[undefined]
+
+      //   myReject,myResolveの状態が、settledになるまで、後続の処理を(then)を待機します。
+      //   rejectedの場合にはreasonプロパティに対してrejectの引数が渡される。
+      //   fulfilledの場合にはvalueプロパティに対してresolve引数の値が渡される。
+    </script>
+  </body>
+</html>
