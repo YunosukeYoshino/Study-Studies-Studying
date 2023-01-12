@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function PromiseFactory(count) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            count++;
+
+            console.log(
+              `${count}回目のコールです。時刻：[${new Date().toTimeString()}]`
+            );
+
+            if (count === 3) {
+              reject(count);
+            } else {
+              resolve(count);
+            }
+          }, 1000);
+        });
+      }
+
+      //従来であればPromise chainで書くところをawait asyncで書き換えれる。
+
+      async function excute() {
+        try {
+          // PromiseFactory内のresolveが呼び出されるまで次の処理を実行しない。
+          let count = await PromiseFactory(0);
+          count = await PromiseFactory(count);
+          count = await PromiseFactory(count);
+          count = await PromiseFactory(count);
+        } catch (errorCount) {
+          console.log(
+            `エラーに飛び出しました。現在のカウントは${errorCount}です。`
+            //Promiseがrejectedのステータスになった場合はcatchブロックに遷移する
+          );
+        } finally {
+          console.log("処理を終了します。");
+        }
+      }
+      //   excute();
+      //   違う非同期関数を処理が可能
+      async function fn() {
+        await excute();
+      }
+      fn();
+    </script>
+  </body>
+</html>

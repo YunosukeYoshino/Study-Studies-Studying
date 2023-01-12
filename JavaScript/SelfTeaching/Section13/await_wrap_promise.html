@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // awaitはPromsieインスタンスの前に記述することで、
+      // Promiseのステータスがsettled(fulfilled or rejectted)になるまで、後続のコードの実行を待機する
+      const prom = new Promise((resolve) => {
+        setTimeout(() => resolve("この値を取り出します。", 1000));
+      });
+      console.log(prom);
+
+      async function asyncFunction() {
+        const value = await prom; //fulfilledになるまで待機する
+        console.log(value);
+      }
+
+      asyncFunction();
+
+      //rejectになった場合
+      // try catch構文で処理する
+      async function throwErorr() {
+        try {
+          await Promise.reject("Promiseが失敗しました。");
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      console.log(throwErorr());
+
+      throwErorr();
+    </script>
+  </body>
+</html>

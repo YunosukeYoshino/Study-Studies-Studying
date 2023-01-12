@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //  Promise.raceは複数のPromiseインスタンスのいずれかがsettled(fulfilled or rejected)になったタイミングで
+      //  Promise.raceに続くthenメソッドまたは、catchメソッドを実行します。
+
+      const myResolve = new Promise((resolve) => {
+        setTimeout(() => {
+          resolve("resoveが呼ばれました");
+          console.log("myResolveの実行が終了しました。");
+        }, 100);
+      });
+      const myReject = new Promise((_, reject) => {
+        //rejectは使わないため_, reject としておく
+        setTimeout(() => {
+          reject("rejectが呼ばれました");
+          console.log("myRejectの実行が終了しました。");
+        }, 200);
+      });
+
+      Promise.race([myReject, myResolve])
+        .then((value) => {
+          console.log(value);
+        })
+        .catch((value) => {
+          console.log(value);
+        });
+
+      // 1 myResolveの実行が終了しました。
+      // 2 resoveが呼ばれました
+      // 3 myRejectの実行が終了しました。
+
+      //   いずれかがfulfilledになるとcatchメソッドの後続の処理は実行されない
+    </script>
+  </body>
+</html>
