@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // thenを使う記述
+      fetch("sample.json")
+        .then((response) => response.json())
+        .then((data) => {
+          for (const { key, value } of data) {
+            console.log(key + ":" + value);
+          }
+        });
+
+      //await async を使うと以下のように記述可能
+      async function myFetch() {
+        const response = await fetch("sample.json");
+        const data = await response.json(); //jsonメソッドもPromiseを返す
+        for (const { key, value } of data) {
+          console.log(key + ":" + value);
+        }
+      }
+      myFetch();
+    </script>
+  </body>
+</html>

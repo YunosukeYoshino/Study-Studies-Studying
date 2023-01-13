@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Parent {
+        constructor(value) {
+          this.parentProp = value;
+        }
+
+        parentMethod() {
+          console.log("親クラスのメソッド");
+        }
+      }
+
+      class Child extends Parent {
+        //extendsでparentクラスを継承
+        constructor(parentProp, childProp) {
+          super(parentProp); //親のクラスのコンストラクタを実行
+          this.childProp = childProp; //子クラス独自のプロパティを実行
+        }
+        childMethod() {
+          console.log(`子から親にアクセス[${this.parentProp}]`);
+        }
+      }
+
+      const childObject = new Child("親", "子");
+
+      console.log(childObject);
+      //   childProp: "子"
+      //   parentProp: "親"
+
+      childObject.parentMethod(); //親クラスのメソッドを実行
+      //   親クラスのメソッド
+      childObject.childMethod(); //子クラスのメソッドを実行
+      //   子から親にアクセス[親]
+    </script>
+  </body>
+</html>

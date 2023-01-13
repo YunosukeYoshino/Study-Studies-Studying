@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // hasOwnPropertyでプロパティ名が合致していればtrueを返す。
+      // メソッドまでは確認できないので注意
+
+      //   メソッドの場合 in 演算子を使う
+      class Person {
+        constructor() {
+          this.name = "ゆう";
+          this.age = 20;
+        }
+        hello() {
+          console.log("こんにちは");
+        }
+      }
+      const taro = new Person(); //インスタンス化
+
+      console.log(`taroのnameプロパティは ${taro.hasOwnProperty("name")}`); //プロパティの存在確認
+
+      console.log("name" in taro); //in 演算子を使ったメソッドの存在確認
+
+      console.log(`taroのnameプロパティは ${taro.hasOwnProperty("hello")}`);
+
+      console.log("hello" in taro); //in 演算子を使ったメソッドの存在確認
+    </script>
+  </body>
+</html>

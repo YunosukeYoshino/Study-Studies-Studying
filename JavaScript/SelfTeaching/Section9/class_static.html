@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Human {
+        static TYPE = "無敵の人"; //静的プロパティを定義
+
+        static staticMove() {
+          console.log(Human.TYPE + "は歩いて移動します。"); //静的メソッドを定義
+        }
+
+        constructor(name) {
+          this.name = name;
+        }
+        move() {
+          //インスタンスメソッド
+          console.log(this.name + "は歩いて移動します。");
+        }
+      }
+
+      const yuche = new Human("yuche");
+      Human.staticMove();
+      //   無敵の人は歩いて移動します。
+
+      yuche.move();
+      //   yucheは歩いて移動します。
+    </script>
+  </body>
+</html>

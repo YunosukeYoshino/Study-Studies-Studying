@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //メソッドとして実行された時のthisは、呼び出し元オブジェクト参照します。
+      class User {
+        constructor(username, password) {
+          this.username = username;
+          this.password = password;
+        }
+
+        login() {
+          console.log(`ログイン[${this.username} / ${this.password}]`); //プロパティに設定された値を習得
+        }
+
+        changePassword(pwd) {
+          this.password = pwd; //thispasswordを引数pwdに変更
+          console.log(pwd);
+          console.log(`パスワードが${pwd}に変更されました`);
+        }
+      }
+      //クラスからオブジェクトを生成する処理をインスタンス化
+      const taro = new User("独習太郎", "taro-pwd");
+      const hanako = new User("独習太郎", "hanako-pwd");
+      taro.login();
+
+      taro.changePassword("あｓでふぁｄがｋｓｄ");
+
+      taro.login();
+    </script>
+  </body>
+</html>
