@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class User {
+        constructor(username, password) {
+          this.username = username;
+          this.password = password;
+        }
+
+        login() {
+          console.log(`ログイン[${this.username} / ${this.password}]`);
+        }
+      }
+      //クラスからオブジェクトを生成する処理をインスタンス化
+      const taro = new User("独習太郎", "taro-pwd");
+      const hanako = new User("独習太郎", "hanako-pwd");
+      taro.login();
+    </script>
+  </body>
+</html>

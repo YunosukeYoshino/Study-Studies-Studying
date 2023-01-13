@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 生成元クラスの確認
+
+      class Parent {}
+      class Child extends Parent {} //生成元はParentなので一緒
+      class son {}
+      const obj = new Child(); //インスタンス化
+      console.log(obj instanceof Child);
+      //   >true
+      console.log(obj instanceof Parent);
+      //   >true
+      console.log(obj instanceof son);
+      // >false
+    </script>
+  </body>
+</html>

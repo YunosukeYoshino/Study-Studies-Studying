@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class User {
+        constructor(username, password) {
+          this.username = username;
+          this.password = password;
+        }
+
+        login() {
+          this.check();
+          console.log(`ログイン[${this.username} / ${this.password}]`); //プロパティに設定された値を習得
+        }
+        check() {
+          console.log(`ログイン情報をチェックします。`);
+        }
+      }
+
+      const taro = new User("YOSHINO", "afgadsfa");
+      taro.login();
+
+      //  ログイン情報をチェックします。
+      //  ログイン[YOSHINO / afgadsfa]
+    </script>
+  </body>
+</html>

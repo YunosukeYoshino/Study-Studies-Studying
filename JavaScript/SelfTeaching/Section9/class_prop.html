@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class TestCls {
+        constructor(arg) {
+          this.prop = arg;
+        }
+      }
+      const obj = new TestCls("引数"); //インスタンス化
+      console.log(obj.prop);
+
+      //   > 引数 クラス(TestCls)内でthis.propに設定した値が取得される
+
+      obj.prop = "値の変更"; //オブジェクトのプロパティ値を変更
+      console.log(obj.prop);
+    </script>
+  </body>
+</html>
