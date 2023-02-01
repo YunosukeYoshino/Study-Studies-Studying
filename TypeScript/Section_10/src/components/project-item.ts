@@ -1,6 +1,6 @@
 import { Draggable } from "../models/drag-drop.js"; //中括弧を書いて fromを指定 拡張子はjs
 import { Project } from "../models/project.js";
-import { Component } from "./base-component.js";
+import Component from "./base-component.js";
 import { autobind } from "../decorators/autoBind.js";
 
 //projectItem Class

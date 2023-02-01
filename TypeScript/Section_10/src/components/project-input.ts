@@ -1,6 +1,6 @@
-import { Component } from "./base-component.js";
-import { Validatable, validate } from "../util/validation.js";
-import { autobind } from "../decorators/autoBind.js";
+import Component from "./base-component.js";
+import * as Validatable from "../util/validation.js"; // グループ化 エイリアス(別名をつけることができる！)
+import { autobind as Autobind } from "../decorators/autoBind.js"; //名前をつけることによって似たような名前を避けるメリットがある。
 import { projectState } from "../state/project-state.js";
 
 //ProjectInput Class
@@ -37,18 +37,18 @@ export class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
     const enteredDescription = this.descriptionInputElment.value; //descriptionを取得する。
     const enteredMonday = this.mandayInputElment.value; //mondayを取得する。
 
-    const titleValidatable: Validatable = {
+    const titleValidatable: Validatable.Validatable = {
       //value
       value: enteredTitle,
       required: true,
     };
-    const descriptionValidatable: Validatable = {
+    const descriptionValidatable: Validatable.Validatable = {
       //value
       value: enteredDescription,
       required: true,
       minLength: 5,
     };
-    const mandayValidatable: Validatable = {
+    const mandayValidatable: Validatable.Validatable = {
       //value
       value: +enteredMonday, //Mondayはnumberに変換
       required: true,
@@ -59,9 +59,9 @@ export class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
       // enteredTitle.trim().length === 0 || //空白ではないかをチェック
       // enteredDescription.trim().length === 0 || //空白ではないかをチェック
       // enteredMonday.trim().length === 0 //空白ではないかをチェック
-      !validate(titleValidatable) || //requiredは必須、minLengthは最小文字
-      !validate(descriptionValidatable) || //requiredは必須、minLengthは最小文字
-      !validate(mandayValidatable) //requiredは必須、minLengthは最小文字
+      !Validatable.validate(titleValidatable) || //requiredは必須、minLengthは最小文字
+      !Validatable.validate(descriptionValidatable) || //requiredは必須、minLengthは最小文字
+      !Validatable.validate(mandayValidatable) //requiredは必須、minLengthは最小文字
     ) {
       alert("入力値が正しくありません！再度お試してください");
       return;
@@ -75,7 +75,7 @@ export class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
     this.descriptionInputElment.value = ""; //descriptionを取得する。
     this.mandayInputElment.value = ""; //mondayを取得する。
   }
-  @autobind
+  @Autobind
   private submitHandler(event: Event) {
     //eventのオブジェクトを受け取ります。
     event.preventDefault(); //formでhttpリクエストが送られないようにする！

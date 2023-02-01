@@ -2,7 +2,14 @@
 /*component classは継承されて使われるべきなので、abstractとつける
 これによりインスタンス化ができなくなる。
 */
-export abstract class Component<T extends HTMLElement, U extends HTMLElement> {
+//export defaultも名前付きエクスポートできる
+// export const something ="..."
+
+//export default
+export default abstract class Component<
+  T extends HTMLElement,
+  U extends HTMLElement
+> {
   templateElement: HTMLTemplateElement; //グローバルに利用できる型
   hostElement: T; //#app
   element: U; //importedNode.firstElementChild
