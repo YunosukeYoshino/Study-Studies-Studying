@@ -14,8 +14,13 @@ const NewTodo: React.FC<NewTodoProps> = (props) => {
     //submitしたときにしか呼ばれれない //form用の型定義
 
     event.preventDefault();
-    const enteredText = textInputRef.current!.value; //currentプロパティを用いてDOMにアクセスをする
+    let enteredText = textInputRef.current!.value; //currentプロパティを用いてDOMにアクセスをする
+    if (enteredText === "") {
+      alert("TODOを入力してください");
+      return;
+    } //入力値がない場合早期リターン
     props.onAddTodo(enteredText);
+    textInputRef.current!.value = ""; //送信後クリア
   };
 
   return (

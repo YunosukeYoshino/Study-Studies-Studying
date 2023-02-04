@@ -15,7 +15,6 @@ const App: React.FC = () => {
 
   //NewTodoからAPPコンポーネントに入力したテキストを渡したい。
   const todoAddHandler = (text: string) => {
-    console.log(todos);
     // // レストパラメーターで配列を新しく更新しても問題ないけど;
     // setTodos([...todos, { id: Math.random().toString(), text: text }]);
 
