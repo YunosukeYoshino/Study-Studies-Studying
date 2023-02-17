@@ -26,7 +26,8 @@ document.body.appendChild(renderer.domElement);
  **/
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1, 16, 16, 16)//width,height,depth
 const sphereGeometry = new THREE.SphereGeometry(0.5, 32, 16)
-
+// const planeGeometry = new THREE.PlaneGeometry(1, 1)
+const planeGeometry = new THREE.PlaneGeometry(10, 10)
 //マテリアル
 const material = new THREE.MeshNormalMaterial({
   // wireframe: true,
@@ -36,8 +37,12 @@ const material = new THREE.MeshNormalMaterial({
 const box = new THREE.Mesh(boxGeometry, material)
 const sphere = new THREE.Mesh(sphereGeometry, material)
 sphere.position.x = 1.5
+const plane = new THREE.Mesh(planeGeometry, material)
+// plane.position.x = -1.5
+plane.rotation.x = -Math.PI * 0.5//90度回転して平面を表現する。
+plane.position.y = -0.5//1に対して半分の位置を下げてあげる
 
-scene.add(box, sphere)
+scene.add(box, sphere, plane)
 
 //ライト
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
