@@ -25,7 +25,7 @@ document.body.appendChild(renderer.domElement);
  * ジオメトリを作ってみよう。
  **/
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1, 16, 16, 16)//width,height,depth
-
+const sphereGeometry = new THREE.SphereGeometry(0.5, 32, 16)
 
 //マテリアル
 const material = new THREE.MeshNormalMaterial({
@@ -34,7 +34,10 @@ const material = new THREE.MeshNormalMaterial({
 
 //メッシュ化
 const box = new THREE.Mesh(boxGeometry, material)
-scene.add(box)
+const sphere = new THREE.Mesh(sphereGeometry, material)
+sphere.position.x = 1.5
+
+scene.add(box, sphere)
 
 //ライト
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
