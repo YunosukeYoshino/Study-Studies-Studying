@@ -32,24 +32,18 @@ const torusGeometry = new THREE.TorusGeometry(0.5, 0.2, 15, 123, Math.PI * 2)//�
 
 // バッファジオメトリー
 const bufferGeometry = new THREE.BufferGeometry();
-const positionArray = new Float32Array(9);
+const count = 50;
+const positionArray = new Float32Array(9 * count);//450個生成される。
 /*
 浮動小数点 型付き配列 32ビットしか入らない
 型付き配列で型を指定してあげることによって。無駄な情報が入らない。
 */
 
 //頂点の位置
-positionArray[0] = 0; //x座標
-positionArray[1] = 0; //y座標
-positionArray[2] = 0; //z座標
+for (let i = 0; i < count * 9; i++) {
+  positionArray[i] = (Math.random() - 0.5) * 2;//0~1をランダムに生成、-0.5で-1~1に変更 中心に寄せることができる。
+}
 
-positionArray[3] = 0;
-positionArray[4] = 1;
-positionArray[5] = 0;
-
-positionArray[6] = 1;
-positionArray[7] = 0;
-positionArray[8] = 0;
 
 console.log(positionArray);
 const positionAttritube = new THREE.BufferAttribute(positionArray, 3)
@@ -59,7 +53,8 @@ bufferGeometry.setAttribute("position", positionAttritube)
 //マテリアル
 // const material = new THREE.MeshNormalMaterial({
 const material = new THREE.MeshBasicMaterial({
-  // wireframe: true,
+  wireframe: true,
+  color: "green"
 });
 
 //メッシュ化
