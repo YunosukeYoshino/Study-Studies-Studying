@@ -28,21 +28,31 @@ const boxGeometry = new THREE.BoxGeometry(1, 1, 1, 16, 16, 16)//width,height,dep
 const sphereGeometry = new THREE.SphereGeometry(0.5, 32, 16)
 // const planeGeometry = new THREE.PlaneGeometry(1, 1)
 const planeGeometry = new THREE.PlaneGeometry(10, 10)
+const torusGeometry = new THREE.TorusGeometry(0.5, 0.2, 15, 123, Math.PI * 2)//引数調べて設定してあげる
 //マテリアル
 const material = new THREE.MeshNormalMaterial({
   // wireframe: true,
 });
 
 //メッシュ化
+// 四角形
 const box = new THREE.Mesh(boxGeometry, material)
+
+// 球体
 const sphere = new THREE.Mesh(sphereGeometry, material)
 sphere.position.x = 1.5
+
+// 下地
 const plane = new THREE.Mesh(planeGeometry, material)
 // plane.position.x = -1.5
 plane.rotation.x = -Math.PI * 0.5//90度回転して平面を表現する。
 plane.position.y = -0.5//1に対して半分の位置を下げてあげる
 
-scene.add(box, sphere, plane)
+// ドーナツ型
+const Torus = new THREE.Mesh(torusGeometry, material)
+Torus.position.x = - 1.5
+Torus.position.y = 0.18
+scene.add(box, sphere, plane, Torus)
 
 //ライト
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
