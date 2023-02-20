@@ -93,6 +93,24 @@ window.addEventListener("resize", () => {
     renderer.setPixelRatio(window.devicePixelRatio);//ジオメトリーをくっきり映し出すことができる。
 })
 
+
+// ホイールを実装してみよう
+let speed = 0;
+let rotation = 0;
+window.addEventListener("wheel", (event) => {
+    speed += event.deltaY * 0.0002;// ホイールのスピードを定義
+    // console.log(speed);//上か下か
+})
+
+function rot() {
+    rotation += speed;
+    speed *= 0.93;//慣性をかけることができる。
+    mesh1.position.x = rotation;
+    window.requestAnimationFrame(rot);//毎秒呼び出す
+}
+
+rot();
+
 // アニメーション
 
 const clock = new THREE.Clock();
