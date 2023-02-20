@@ -58,14 +58,36 @@ mesh1.position.set(2, 0, 0);
 mesh2.position.set(-1, 0, 0);
 mesh3.position.set(2, 0, -6);
 mesh4.position.set(5, 0, 3);
+
+scene.add(mesh1, mesh2, mesh3, mesh4)
+
 //ライトの追加
 const directionalLight = new THREE.DirectionalLight("#ffffff", 4)//色,色の強さ
 directionalLight.position.set(0.5, 1, 0);//ライトのポジションをやや右上に変更
 scene.add(directionalLight)
 
-scene.add(mesh1, mesh2, mesh3, mesh4)
 
-renderer.render(scene, camera)
+//ブラウザのリサイズ
+window.addEventListener("resize", () => {
+    //サイズのアップデート
+    sizes.width = window.innerWidth;
+    sizes.height = window.innerHeight;
+
+    // カメラのアップデート
+    camera.aspect = window.innerWidth / window.innerHeight; //リサイズするたびにアスペクト比を変える。
+    camera.updateProjectionMatrix(); //アップデートする際に合わせて呼び出す必要がある。
+
+    // レンダラーのアップデート
+    renderer.setSize(sizes.width, sizes.height); //レンダラーのサイズを指定
+    renderer.setPixelRatio(window.devicePixelRatio);//ジオメトリーをくっきり映し出すことができる。
+})
+
+// アニメーション
+const animate = () => {
+    renderer.render(scene, camera);
+    window.requestAnimationFrame(animate);//毎秒呼び出す
+};
+animate()
 
 
 
