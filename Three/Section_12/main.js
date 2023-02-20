@@ -70,6 +70,7 @@ mesh3.position.set(2, 0, -6);
 mesh4.position.set(5, 0, 3);
 
 scene.add(mesh1, mesh2, mesh3, mesh4)
+const meshes = [mesh1, mesh2, mesh3, mesh4];//データとして扱いやすくするため配列に格納
 
 //ライトの追加
 const directionalLight = new THREE.DirectionalLight("#ffffff", 4)//色,色の強さ
@@ -93,8 +94,26 @@ window.addEventListener("resize", () => {
 })
 
 // アニメーション
+
+const clock = new THREE.Clock();
+
 const animate = () => {
     renderer.render(scene, camera);
+
+    let getDeltaTime = clock.getDelta();
+    // console.log(getDeltaTime);
+
+    //meshを回転させる。
+    for (const mesh of meshes) {
+        /**
+         * deltaタイムをかけてあげることによってどのデバイスでも同じような時間を算出できる
+         */
+        mesh.rotation.x += 0.1 * getDeltaTime;
+        mesh.rotation.y += 0.12 * getDeltaTime;
+    }
+
+
+    // requestAnimationFrameはパソコンのスペックによって変わってくる。
     window.requestAnimationFrame(animate);//毎秒呼び出す
 };
 animate()
