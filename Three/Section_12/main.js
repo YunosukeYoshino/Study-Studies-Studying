@@ -1,6 +1,12 @@
 import './style.css'
-
 import * as THREE from 'three';
+import * as dat from "lil-gui";
+
+/***********
+***UIデバッグを実装***
+***********/
+const gui = new dat.GUI()
+
 // canvasのDOM要素の取得
 const canvas = document.querySelector(".webgl")
 
@@ -8,7 +14,6 @@ const canvas = document.querySelector(".webgl")
 
 //シーン
 const scene = new THREE.Scene();
-
 
 //サイズ
 const sizes = {
@@ -40,12 +45,17 @@ renderer.setPixelRatio(window.devicePixelRatio);//ジオメトリーをくっき
 */
 
 //マテリアル
-const material = new THREE.MeshPhongMaterial({//金属っぽい質感のジオメトリー
+const material = new THREE.MeshPhysicalMaterial({//金属っぽい質感のジオメトリー
     color: "#3c94d7",
-    metalness: 0.86,
-    roughness: 0.37,//粗さ
+    metalness: 0.865,
+    roughness: 0.373,//粗さ
     flatShading: true,//材質
 })
+
+gui.addColor(material, "color"); //ジオメトリーの色をUIデバッグで操作可能になる。
+gui.add(material, "metalness").min(0).max(1).step(0.001);
+gui.add(material, "roughness").min(0).max(1).step(0.001);
+
 
 // ジオメトリー(メッシュ化したもの)
 const mesh1 = new THREE.Mesh(new THREE.TorusGeometry(1, 0.4, 16, 60), material)//メッシュの中に直接ジオメトリーをかける。
