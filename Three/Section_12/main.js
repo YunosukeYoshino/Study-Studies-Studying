@@ -155,6 +155,9 @@ const animate = () => {
         mesh.rotation.y += 0.12 * getDeltaTime;
     }
 
+    //カメラを回転させる
+    camera.position.x += cursor.x * getDeltaTime * 3;
+    camera.position.y += -cursor.y * getDeltaTime * 3; //curor.yを逆にするためにマイナスする
 
     // requestAnimationFrameはパソコンのスペックによって変わってくる。
     window.requestAnimationFrame(animate);//毎秒呼び出す
