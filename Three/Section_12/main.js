@@ -122,6 +122,20 @@ function rot() {
 
 rot();
 
+// カーソルの位置を取得してみよう
+const cursor = {
+
+}
+
+cursor.x = 0;
+cursor.y = 0;
+addEventListener("mousemove", event => {
+    cursor.x = (event.clientX / sizes.width) - 0.5; //-0.5から0.5までの間でカーソルの値を取得できます。
+    cursor.y = (event.clientY / sizes.height) - 0.5; //-0.5から0.5までの間でカーソルの値を取得できます。
+    console.log(cursor);
+})
+
+
 // アニメーション
 
 const clock = new THREE.Clock();
