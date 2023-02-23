@@ -6,6 +6,8 @@ import * as dat from 'lil-gui'
 import vertexShader from './shadars/vertexShader.glsl?raw'
 import fragmentShader from './shadars/fragmentShader.glsl?raw'
 
+const gui = new dat.GUI({ width: 300 })
+
 /**
  * Sizes
  */
@@ -30,14 +32,25 @@ const geometry = new THREE.PlaneGeometry(1, 1, 32, 32)
 
 // Material
 // const material = new THREE.MeshBasicMaterial()
+
 /**
  * ShaderMaterialを追加
  */
 const material = new THREE.ShaderMaterial({
 	vertexShader: vertexShader,
 	fragmentShader: fragmentShader,
+
+	//グローバルで変数を定義
+	uniforms: {
+		uWaveLength: { value: 1.2 },
+	},
 })
 
+/**
+ * UIデバッグの実装
+ */
+
+gui.add(material.uniforms.uWaveLength, 'value').min(0).max(1).step(0.01).name('uWaveLength')
 // Mesh
 const mesh = new THREE.Mesh(geometry, material)
 mesh.rotation.x = -Math.PI / 2
