@@ -51,7 +51,10 @@ const material = new THREE.ShaderMaterial({
  * UIデバッグの実装
  */
 
-gui.add(material.uniforms.uWaveLength, 'value').min(0).max(1).step(0.01).name('uWaveLength')
+gui.add(material.uniforms.uWaveLength, 'value').min(0).max(1).step(0.001).name('uWaveLength')
+gui.add(material.uniforms.uFrequency.value, 'x').min(0).max(10).step(0.001).name('uFrequencX')
+gui.add(material.uniforms.uFrequency.value, 'y').min(0).max(10).step(0.001).name('uFrequencY')
+
 // Mesh
 const mesh = new THREE.Mesh(geometry, material)
 mesh.rotation.x = -Math.PI / 2
