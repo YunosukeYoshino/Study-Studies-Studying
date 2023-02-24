@@ -44,6 +44,8 @@ const material = new THREE.ShaderMaterial({
 	uniforms: {
 		uWaveLength: { value: 0.2 },
 		uFrequency: { value: new THREE.Vector2(5.0, 2.5) },
+		uTime: { value: 0 },
+		uWaveSpeed: { value: 0.75 },
 	},
 })
 
@@ -54,6 +56,7 @@ const material = new THREE.ShaderMaterial({
 gui.add(material.uniforms.uWaveLength, 'value').min(0).max(1).step(0.001).name('uWaveLength')
 gui.add(material.uniforms.uFrequency.value, 'x').min(0).max(10).step(0.001).name('uFrequencX')
 gui.add(material.uniforms.uFrequency.value, 'y').min(0).max(10).step(0.001).name('uFrequencY')
+gui.add(material.uniforms.uWaveSpeed, 'value').min(0).max(4).step(0.001).name('uWaveSpeed')
 
 // Mesh
 const mesh = new THREE.Mesh(geometry, material)
@@ -97,6 +100,8 @@ const clock = new THREE.Clock()
 const animate = () => {
 	//時間取得
 	const elapsedTime = clock.getElapsedTime()
+
+	material.uniforms.uTime.value = elapsedTime
 
 	controls.update()
 
