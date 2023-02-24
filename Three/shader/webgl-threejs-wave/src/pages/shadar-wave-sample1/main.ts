@@ -58,6 +58,9 @@ const material = new THREE.ShaderMaterial({
 		uSurfaceColor: { value: new THREE.Color(colorObject.surfaceColor) },
 		uColorOffset: { value: 1 },
 		uColorMultiplier: { value: 9.0 },
+		uSmallWaveElavation: { value: 0.15 },
+		uSmallWaveFrequency: { value: 3.0 },
+		uSmallWaveSpeed: { value: 0.2 },
 	},
 })
 
@@ -71,6 +74,9 @@ gui.add(material.uniforms.uFrequency.value, 'y').min(0).max(10).step(0.001).name
 gui.add(material.uniforms.uWaveSpeed, 'value').min(0).max(4).step(0.001).name('uWaveSpeed')
 gui.add(material.uniforms.uColorOffset, 'value').min(1).max(10).step(0.001).name('uColorOffset')
 gui.add(material.uniforms.uColorMultiplier, 'value').min(0).max(10).step(0.001).name('uColorMultiplier')
+gui.add(material.uniforms.uSmallWaveElavation, 'value').min(0).max(1).step(0.001).name('uSmallWaveElavation')
+gui.add(material.uniforms.uSmallWaveFrequency, 'value').min(0).max(30).step(0.001).name('uSmallWaveFrequency')
+gui.add(material.uniforms.uSmallWaveSpeed, 'value').min(0).max(4).step(0.001).name('uSmallWaveSpeed')
 
 //カラーのデバッグを追加
 gui.addColor(colorObject, 'depthColor').onChange(() => {

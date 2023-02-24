@@ -2,6 +2,9 @@ uniform float uWaveLength;
 uniform vec2 uFrequency;
 uniform float uTime;
 uniform float uWaveSpeed;
+uniform float uSmallWaveElavation;
+uniform float uSmallWaveFrequency;
+uniform float uSmallWaveSpeed;
 
 varying float vElecation;
 
@@ -94,7 +97,7 @@ void main() {
 
      //abs関数で波の谷を表現 abs:マイナスをプラスに
      for(float i = 1.0; i <= 3.0; i++) {
-          elecation -= abs(cnoise(vec3(modelPosition.xz * i * 3.0, uTime * 0.2))) * 0.15 / i;
+          elecation -= abs(cnoise(vec3(modelPosition.xz * i * uSmallWaveFrequency, uTime * uSmallWaveSpeed))) * uSmallWaveElavation / i;
      }
 
      modelPosition.y += elecation;
