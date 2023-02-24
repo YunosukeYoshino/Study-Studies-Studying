@@ -56,7 +56,7 @@ const material = new THREE.ShaderMaterial({
 		uWaveSpeed: { value: 0.75 },
 		uDepthColor: { value: new THREE.Color(colorObject.depthColor) },
 		uSurfaceColor: { value: new THREE.Color(colorObject.surfaceColor) },
-		uColorOffset: { value: 0.03 },
+		uColorOffset: { value: 1 },
 		uColorMultiplier: { value: 9.0 },
 	},
 })
@@ -69,7 +69,7 @@ gui.add(material.uniforms.uWaveLength, 'value').min(0).max(1).step(0.001).name('
 gui.add(material.uniforms.uFrequency.value, 'x').min(0).max(10).step(0.001).name('uFrequencX')
 gui.add(material.uniforms.uFrequency.value, 'y').min(0).max(10).step(0.001).name('uFrequencY')
 gui.add(material.uniforms.uWaveSpeed, 'value').min(0).max(4).step(0.001).name('uWaveSpeed')
-gui.add(material.uniforms.uColorOffset, 'value').min(0).max(1).step(0.001).name('uColorOffset')
+gui.add(material.uniforms.uColorOffset, 'value').min(1).max(10).step(0.001).name('uColorOffset')
 gui.add(material.uniforms.uColorMultiplier, 'value').min(0).max(10).step(0.001).name('uColorMultiplier')
 
 //カラーのデバッグを追加

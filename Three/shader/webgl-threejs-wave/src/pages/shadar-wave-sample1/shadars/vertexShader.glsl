@@ -92,7 +92,7 @@ void main() {
      // varying で変数化することによって、他ファイルで切り出せる
      float elecation = sin(modelPosition.x * uFrequency.x + uTime * uWaveSpeed) * uWaveLength * sin(modelPosition.z * uFrequency.y + uTime * uWaveSpeed) * uWaveLength; //波のような表現
 
-     elecation += cnoise(vec3(modelPosition.xz * 3.0, uTime * 0.2)) * 0.2;
+     elecation += abs(cnoise(vec3(modelPosition.xz * 3.0, uTime * 0.2))) * 0.15;
 
      modelPosition.y += elecation;
 
