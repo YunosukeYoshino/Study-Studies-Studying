@@ -106,12 +106,15 @@ window.addEventListener('resize', () => {
 
 // Camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.set(0.2, 0.7, 0.7)
+camera.position.set(0, 0.2, 0) //カメラの位置を低く設定
 scene.add(camera)
 
+/**
+ * OrbitControlsオフにすることでカメラの制御をオフすることができる
+ */
 // Controls
-const controls = new OrbitControls(camera, canvas)
-controls.enableDamping = true
+// const controls = new OrbitControls(camera, canvas)
+// controls.enableDamping = true
 
 /**
  * Renderer
@@ -137,7 +140,9 @@ const animate = () => {
 	camera.position.x = Math.sin(elapsedTime * 0.17) * 3.0
 	camera.position.z = Math.cos(elapsedTime * 0.17) * 3.0
 
-	controls.update()
+	camera.lookAt(Math.cos(elapsedTime), Math.sin(elapsedTime) * 0.4, Math.sin(elapsedTime) * 0.28)
+
+	// controls.update()
 
 	renderer.render(scene, camera)
 
