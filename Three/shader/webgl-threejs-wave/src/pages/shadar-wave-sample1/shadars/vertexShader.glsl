@@ -1,10 +1,13 @@
 uniform float uWaveLength;
+uniform vec2 uFrequency;
 
-void main(){
-     vec4 modelPosition = modelMatrix * vec4(position,1.0);
+void main() {
+     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
 
-     modelPosition.y += sin(modelPosition.x)* uWaveLength; //波のような表現
+     // vaningで変数化することによって、他ファイルで切り出せる
+     float elecation = sin(modelPosition.x * uFrequency.x) * uWaveLength * sin(modelPosition.z * uFrequency.y) * uWaveLength; //波のような表現
 
+     modelPosition.y += elecation;
 
      vec4 viewPosition = viewMatrix * modelPosition;
      vec4 projectionMatrix = projectionMatrix * viewPosition;

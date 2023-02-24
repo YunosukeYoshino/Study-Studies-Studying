@@ -17,7 +17,7 @@ const sizes = {
 }
 
 // Canvas
-const canvas = document.querySelector('.webgl')
+const canvas = document.querySelector('.webgl') as HTMLCanvasElement
 
 // Scene
 const scene = new THREE.Scene()
@@ -42,7 +42,8 @@ const material = new THREE.ShaderMaterial({
 
 	//グローバルで変数を定義
 	uniforms: {
-		uWaveLength: { value: 1.2 },
+		uWaveLength: { value: 0.2 },
+		uFrequency: { value: new THREE.Vector2(5.0, 2.5) },
 	},
 })
 
