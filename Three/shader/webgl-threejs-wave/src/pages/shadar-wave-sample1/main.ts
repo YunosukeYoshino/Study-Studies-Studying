@@ -28,7 +28,7 @@ const scene = new THREE.Scene()
 const textureLoader = new THREE.TextureLoader()
 
 // Geometry
-const geometry = new THREE.PlaneGeometry(2, 2, 512, 512)
+const geometry = new THREE.PlaneGeometry(8, 8, 512, 512)
 
 //color
 const colorObject = {
@@ -129,9 +129,13 @@ const clock = new THREE.Clock()
 
 const animate = () => {
 	//時間取得
-	const elapsedTime = clock.getElapsedTime()
+	const elapsedTime = clock.getElapsedTime() //経過時間を取得
 
 	material.uniforms.uTime.value = elapsedTime
+
+	//カメラを円周上に周回させる。
+	camera.position.x = Math.sin(elapsedTime * 0.17) * 3.0
+	camera.position.z = Math.cos(elapsedTime * 0.17) * 3.0
 
 	controls.update()
 
