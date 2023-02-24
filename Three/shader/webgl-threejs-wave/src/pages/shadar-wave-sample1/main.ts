@@ -30,6 +30,14 @@ const textureLoader = new THREE.TextureLoader()
 // Geometry
 const geometry = new THREE.PlaneGeometry(1, 1, 32, 32)
 
+//color
+const colorObject = {
+	depthColor: '',
+	surfaceColor: '',
+}
+colorObject.depthColor = '#2d81ae'
+colorObject.surfaceColor = '#66c1f9'
+
 // Material
 // const material = new THREE.MeshBasicMaterial()
 
@@ -46,6 +54,8 @@ const material = new THREE.ShaderMaterial({
 		uFrequency: { value: new THREE.Vector2(5.0, 2.5) },
 		uTime: { value: 0 },
 		uWaveSpeed: { value: 0.75 },
+		uDepthColor: { value: new THREE.Color(colorObject.depthColor) },
+		uSurfaceColor: { value: new THREE.Color(colorObject.surfaceColor) },
 	},
 })
 
@@ -57,6 +67,14 @@ gui.add(material.uniforms.uWaveLength, 'value').min(0).max(1).step(0.001).name('
 gui.add(material.uniforms.uFrequency.value, 'x').min(0).max(10).step(0.001).name('uFrequencX')
 gui.add(material.uniforms.uFrequency.value, 'y').min(0).max(10).step(0.001).name('uFrequencY')
 gui.add(material.uniforms.uWaveSpeed, 'value').min(0).max(4).step(0.001).name('uWaveSpeed')
+
+//カラーのデバッグを追加
+gui.addColor(colorObject, 'depthColor').onChange(() => {
+	material.uniforms.uDepthColor.value.set(colorObject.depthColor)
+})
+gui.addColor(colorObject, 'surfaceColor').onChange(() => {
+	material.uniforms.uSurfaceColor.value.set(colorObject.surfaceColor)
+})
 
 // Mesh
 const mesh = new THREE.Mesh(geometry, material)
