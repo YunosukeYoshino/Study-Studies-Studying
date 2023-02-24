@@ -86,6 +86,8 @@ gui.addColor(colorObject, 'surfaceColor').onChange(() => {
 	material.uniforms.uSurfaceColor.value.set(colorObject.surfaceColor)
 })
 
+gui.show(false) //uiデバッグの非表示
+
 // Mesh
 const mesh = new THREE.Mesh(geometry, material)
 mesh.rotation.x = -Math.PI / 2

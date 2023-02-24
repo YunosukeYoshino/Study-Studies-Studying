@@ -1,16 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
 * {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 html,
 body {
-  overflow: hidden;
+	overflow: hidden;
+	color: white;
+	font-family: 'Merriweather', serif;
+	letter-spacing: 1.4px;
 }
 
 .webgl {
-  position: fixed;
-  top: 0;
-  left: 0;
-  outline: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	outline: none;
+	z-index: -1;
+}
+
+header {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 20px;
+}
+
+header .logo {
+	font-size: clamp(24px, 35/ 1420 * 100vw, 35px);
+	font-weight: 700;
+}
+
+header ul {
+	list-style: none;
+	display: flex;
+	gap: 20px;
+}
+
+header ul li a {
+	color: #fff;
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+main {
+	display: grid;
+	place-content: center;
+	height: calc(100vh - 145px);
+	text-align: center;
+}
+
+main h1 {
+	font-size: 40px;
+	margin-bottom: 24px;
 }
