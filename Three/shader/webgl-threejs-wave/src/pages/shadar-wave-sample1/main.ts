@@ -1,10 +1,9 @@
 import './style.css'
 import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import * as dat from 'lil-gui'
-
 import vertexShader from './shadars/vertexShader.glsl?raw'
 import fragmentShader from './shadars/fragmentShader.glsl?raw'
+import skyImage from './textures/sky.jpg'
 
 const gui = new dat.GUI({ width: 300 })
 
@@ -21,11 +20,6 @@ const canvas = document.querySelector('.webgl') as HTMLCanvasElement
 
 // Scene
 const scene = new THREE.Scene()
-
-/**
- * Textures
- */
-const textureLoader = new THREE.TextureLoader()
 
 // Geometry
 const geometry = new THREE.PlaneGeometry(8, 8, 512, 512)
@@ -124,6 +118,14 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+/**
+ * Textures
+ */
+const textureLoader = new THREE.TextureLoader()
+const skyTexture = textureLoader.load(skyImage)
+
+scene.background = skyTexture
 
 /**
  * Animate
