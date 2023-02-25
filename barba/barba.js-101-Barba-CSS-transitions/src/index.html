@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{> head}}
+    <script type="module" src="./main.js"></script>
+  </head>
+
+  <body data-barba="wrapper">
+    <!-- put here content that will not change
+			between your pages, like <header> or <nav> -->
+
+    <header
+      data-barba="container"
+      class="is-home"
+      data-background="#5C85EE"
+      data-barba-namespace="home"
+    >
+      <!-- put here the content you wish to change
+			  between your pages, like your main content <h1> or <p> -->
+      <div class="transition">
+        <h2>Cover Screen</h2>
+      </div>
+      <div class="content">
+        <h1>We are learning<br />page transitions<br />with Barba.js</h1>
+        <p>This demo is using @barba/css plugin.</p>
+        <a href="fade.html">Fade Transition</a>
+      </div>
+    </header>
+
+    <!-- put here content that will not change
+			between your pages, like <footer> -->
+  </body>
+</html>

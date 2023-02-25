@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{> head}}
+    <script type="module" src="./main.js"></script>
+  </head>
+
+  <body data-barba="wrapper">
+    <!-- put here content that will not change
+				between your pages, like <header> or <nav> -->
+
+    <header
+      data-barba="container"
+      class="is-fade"
+      data-background="#CC98C6"
+      data-barba-namespace="fade"
+    >
+      <!-- put here the content you wish to change
+								between your pages, like your main content <h1> or <p> -->
+      <div class="transition">
+        <h2>Cover Screen</h2>
+      </div>
+      <div class="content">
+        <h1>
+          We have faded out<br />to the previous page<br />and faded in this
+          page
+        </h1>
+        <p>Now lets use clip-path transition.</p>
+        <a href="clip.html">Clip-Path Transition</a>
+      </div>
+    </header>
+
+    <!-- put here content that will not change
+				between your pages, like <footer> -->
+  </body>
+</html>
