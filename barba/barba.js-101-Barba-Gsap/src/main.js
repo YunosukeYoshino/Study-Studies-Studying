@@ -1,7 +1,7 @@
 import "./css/main.css";
 import "./scss/style.scss";
 import gsap from 'gsap';
-import { animationEnter, animationLeave } from "./js";
+import { animationEnter, animationLeave, leaveToProject, revealProject, leaveFromProject } from "./js";
 import barba from '@barba/core';
 
 const resetActiveLink = () => gsap.set("a.is-active span", {
@@ -12,6 +12,20 @@ const resetActiveLink = () => gsap.set("a.is-active span", {
 barba.init({
     transitions: [
         {
+            name: 'detail-page',
+            to: {
+                namespace: ["detail-page"]
+            },
+            once({ next }) {
+                revealProject(next.container)
+            },
+            leave: ({ current }) => leaveToProject(current.container),
+            enter({ next }) {
+                revealProject(next.container)
+            },
+        },
+        {
+            name: "general-transition",
             once({ next }) {
                 resetActiveLink()
                 gsap.from("header a", {
@@ -27,6 +41,7 @@ barba.init({
             enter({ next }) {
                 animationEnter(next.container)
             },
-        }
+        },
+
     ]
 })
