@@ -1,0 +1,27 @@
+{
+  "/index.html": {
+    "pageName": "top",
+    "title": "トップページ",
+    "description": "トップページです。"
+  },
+  "/pages/index.html": {
+    "pageName": "top",
+    "title": "Barba Fade",
+    "description": "Barba Fade"
+  },
+  "/pages/fade.html": {
+    "pageName": "Fade",
+    "title": "Fade",
+    "description": "Fade ページ"
+  },
+  "/pages/clip.html": {
+    "pageName": "clip",
+    "title": "clip",
+    "description": "clip ページ"
+  },
+  "/pages/with-cover.html": {
+    "pageName": "with-cover",
+    "title": "with-cover",
+    "description": "with-cover ページ"
+  }
+}
