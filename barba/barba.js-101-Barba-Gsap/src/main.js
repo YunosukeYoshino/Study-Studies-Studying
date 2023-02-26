@@ -1,24 +1,28 @@
 import "./css/main.css";
 import "./scss/style.scss";
+import gsap from 'gsap';
 import { animationEnter, animationLeave } from "./js";
 import barba from '@barba/core';
 
-
+const resetActiveLink = () => gsap.set("a.is-active span", {
+    xPercent: -100,
+    transformOrigin: "left"
+})
 
 barba.init({
     transitions: [
         {
             once({ next }) {
-                animationEnter(next.container)
+                resetActiveLink()
+                gsap.from("header a", {
+                    duration: 0.6,
+                    yPercent: 100,
+                    stagger: 0.2,
+                    ease: "power1.out",
+                    onComplete: () => animationEnter(next.container)
+                })
+                // animationEnter(next.container)
             },
-            // leave({ current }) {
-            //     /**
-            //      * アニメーションを再生する前に、このアニメーションが終了するのを待つ必要があります
-            //      */
-            //     const done = this.async();
-            //     console.log("leave");
-            //     animationLeave(current.container, done)
-            // },
             leave: ({ current }) => animationLeave(current.container),
             enter({ next }) {
                 animationEnter(next.container)
