@@ -3,6 +3,9 @@ import "./scss/style.scss";
 import gsap from 'gsap';
 import { animationEnter, animationLeave, leaveToProject, revealProject, leaveFromProject } from "./js";
 import barba from '@barba/core';
+import barbaPrefetch from '@barba/prefetch';
+
+barba.use(barbaPrefetch);
 
 const resetActiveLink = () => gsap.set("a.is-active span", {
     xPercent: -100,
