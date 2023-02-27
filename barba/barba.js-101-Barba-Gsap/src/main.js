@@ -4,16 +4,30 @@ import gsap from 'gsap';
 import { animationEnter, animationLeave, leaveToProject, revealProject, leaveFromProject } from "./js";
 import barba from '@barba/core';
 import barbaPrefetch from '@barba/prefetch';
+import barbaRouter from '@barba/router';
 
-barba.use(barbaPrefetch);
+//barbaRouter を定義
+const myRoutes = [
+    { path: '/index.html', name: 'home' },
+    { path: '/detail-page.html', name: 'detail-page' },
+    { path: '/detail-page2.html', name: 'detail-page2' },
+    { path: '/architecture.html', name: 'architecture' },
+];
+
+
+//barbaPrefetch barbaRouter を使用する
+barba.use(barbaPrefetch, barbaRouter, {
+    routes: myRoutes
+});
+
 
 const resetActiveLink = () => gsap.set("a.is-active span", {
     xPercent: -100,
     transformOrigin: "left"
 })
 
-barba.hooks.enter(() => {
-    console.log("enter");
+barba.hooks.enter((data) => {
+    console.log({ data });
     window.scrollTo(0, 0); //ページ遷移後の scroll位置を修正
 })
 
