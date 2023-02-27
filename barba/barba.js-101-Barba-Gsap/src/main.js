@@ -42,6 +42,21 @@ barba.init({
                 animationEnter(next.container)
             },
         },
-
+        {
+            name: 'from-detail',
+            from: {
+                namespace: ["detail-page"]
+            },
+            leave: ({ current }) => leaveFromProject(current.container),
+            enter({ next }) {
+                gsap.from("header a", {
+                    duration: 0.6,
+                    yPercent: 100,
+                    stagger: 0.2,
+                    ease: "power1.out",
+                }),
+                    animationEnter(next.container)
+            }
+        },
     ]
 })
