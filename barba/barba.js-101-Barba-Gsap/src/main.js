@@ -16,10 +16,10 @@ const myRoutes = [
 
 
 //barbaPrefetch barbaRouter を使用する
-barba.use(barbaPrefetch, barbaRouter, {
+barba.use(barbaRouter, {
     routes: myRoutes
 });
-
+barba.use(barbaPrefetch);
 
 const resetActiveLink = () => gsap.set("a.is-active span", {
     xPercent: -100,
