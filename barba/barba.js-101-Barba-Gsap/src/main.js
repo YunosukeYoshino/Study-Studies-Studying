@@ -9,6 +9,15 @@ const resetActiveLink = () => gsap.set("a.is-active span", {
     transformOrigin: "left"
 })
 
+barba.hooks.enter(() => {
+    console.log("enter");
+    window.scrollTo(0, 0); //ページ遷移後の scroll位置を修正
+})
+
+barba.hooks.after(() => {
+    console.log("after");
+})
+
 barba.init({
     transitions: [
         {
