@@ -19,6 +19,21 @@ barba.hooks.after(() => {
 })
 
 barba.init({
+    views: [
+        {
+            namespace: "architecture",
+            // 現在の 名前空間から離れる前に何かをする
+            beforeLeave({ current }) {
+                console.log(current.container);
+
+            },
+            //  名前空間に入る前に何かをする
+            beforeEnter({ current }) {
+                console.log(current.container);
+            },
+
+        }
+    ],
     transitions: [
         {
             name: 'detail-page',
