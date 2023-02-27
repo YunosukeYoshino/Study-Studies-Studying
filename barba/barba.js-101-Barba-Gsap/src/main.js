@@ -1,10 +1,13 @@
 import "./css/main.css";
 import "./scss/style.scss";
 import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import { animationEnter, animationLeave, leaveToProject, revealProject, leaveFromProject } from "./js";
 import barba from '@barba/core';
 import barbaPrefetch from '@barba/prefetch';
 import barbaRouter from '@barba/router';
+
+gsap.registerPlugin(ScrollTrigger);
 
 //barbaRouter を定義
 const myRoutes = [
@@ -37,6 +40,33 @@ barba.hooks.after(() => {
 
 barba.init({
     views: [
+        {
+            namespace: "home",
+            // get the element you want to animate
+            beforeEnter() {
+                const element = document.querySelector('.scrolltrigger-element');
+                // create a basic timeline
+                const timeline = gsap.to(element, {
+                    x: 500,
+                    duration: 2
+                });
+
+                // create instance each time you enter the page
+                instance = ScrollTrigger.create({
+                    animation: timeline,
+                    trigger: element,
+                    start: 'center 75%',
+                    markers: true,
+                    scrub: true
+                });
+                // create instance each time you enter the page
+            },
+            afterLeave() {
+
+                // kill instance each time you leave the page
+                instance.kill();
+            },
+        },
         {
             namespace: "architecture",
             // 現在の 名前空間から離れる前に何かをする
