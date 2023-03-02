@@ -1,0 +1,18 @@
+/* ----------------------------------
+	各種フォルダを@useしてまとめる
+------------------------------------ */
+@use "./base";
+@use "./reset";
+@use "./p-index";
+
+section {
+  min-height: 100vh;
+  padding: 3rem;
+  overflow: hidden;
+  h1 {
+    font-size: 3em;
+  }
+  p {
+    font-size: 1em;
+  }
+}
