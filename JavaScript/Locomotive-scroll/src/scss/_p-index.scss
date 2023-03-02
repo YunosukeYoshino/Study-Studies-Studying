@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500&display=swap");
+body {
+  font-family: "Golos Text", M PLUS 1p;
+}
+img {
+  width: 100%;
+  /* transform: scale(1.5); */
+}
+img.is-inview {
+  opacity: 1;
+  /* transition: 0.4s all; */
+  transform: scale(1);
+}
+.p-about {
+  -webkit-backface-visibility: hidden;
+  -webkit-backdrop-filter: saturate(120%) blur(40px);
+  backdrop-filter: saturate(120%) blur(40px);
+  backface-visibility: hidden;
+  background-color: rgba(245, 245, 245, 0.28);
+  will-change: backdrop-filter;
+}
+
+.p-main__head {
+  font-size: 95px;
+  position: absolute;
+  color: #ffffff;
+  bottom: 1rem;
+  left: 1.8125rem;
+}
+video {
+  object-fit: cover;
+  width: 100%;
+  min-height: 100svh;
+}

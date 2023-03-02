@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{> head}}
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <div data-scroll-container style="background-color: beige">
+      <div class="p-main">{{> first_view}}</div>
+
+      <section class="p-about" data-scroll-section></section>
+      <section data-scroll-section style="background-color: green">
+        {{> section1}}
+      </section>
+      <section
+        data-scroll-section
+        data-scroll
+        data-scroll-section-inview
+        style="background-color: rgb(71, 91, 71)"
+      >
+        {{> section2}}
+      </section>
+      <section data-scroll-section style="background-color: rgb(209, 245, 209)">
+        {{> section3}}
+      </section>
+      <section
+        data-scroll-section
+        style="background-color: rgb(209, 245, 209)"
+      ></section>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
