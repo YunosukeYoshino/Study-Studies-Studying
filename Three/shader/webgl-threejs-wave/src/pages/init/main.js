@@ -30,7 +30,9 @@ const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
 // RawShaderMaterial Raw シェーダーを読み込む
 const material = new THREE.RawShaderMaterial({
     vertexShader: vertexShader,
-    fragmentShader: fragmentShader
+    fragmentShader: fragmentShader,
+    transparent: true,//透明に
+    side: THREE.DoubleSide,//裏側も見れる。
 });
 
 // Mesh
