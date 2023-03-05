@@ -3,6 +3,10 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import vertexShader from './shadars/vertexShader.glsl?raw'
 import fragmentShader from './shadars/fragmentShader.glsl?raw'
+import * as dat from 'lil-gui'
+
+// デバッグ
+const gui = new dat.GUI({ width: 300 });
 
 /**
  * Sizes
@@ -37,6 +41,18 @@ const material = new THREE.ShaderMaterial({
         uFrequency: { value: new THREE.Vector2(10, 5) },//グローバルに定義 uniformsなのでuのprefixをつける
     }
 });
+
+// デバッグを追加
+gui.add(material.uniforms.uFrequency.value, "x")
+    .min(0)
+    .max(20)
+    .step(0.001)
+    .name("frequencyX")
+gui.add(material.uniforms.uFrequency.value, "y")
+    .min(0)
+    .max(20)
+    .step(0.001)
+    .name("frequencyY")
 
 // Mesh
 const mesh = new THREE.Mesh(geometry, material);
