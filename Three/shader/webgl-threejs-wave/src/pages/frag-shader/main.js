@@ -4,6 +4,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import vertexShader from './shadars/vertexShader.glsl?raw'
 import fragmentShader from './shadars/fragmentShader.glsl?raw'
 import * as dat from 'lil-gui'
+import flag from "./images/america.png"
 
 // デバッグ
 const gui = new dat.GUI({ width: 300 });
@@ -26,9 +27,11 @@ const scene = new THREE.Scene();
  * Textures
  */
 const textureLoader = new THREE.TextureLoader();
+const flagTexture = textureLoader.load(flag);//texture loadを定義
 
 // Geometry
 const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
+console.log(geometry.attributes.uv.array)//uv座標が確認できる。
 
 // Material
 // ShaderMaterial シェーダーを読み込む
@@ -39,15 +42,18 @@ const material = new THREE.ShaderMaterial({
     side: THREE.DoubleSide,//裏側も見れる。
     uniforms: {
         uFrequency: { value: new THREE.Vector2(10, 5) },//グローバルに定義 uniformsなのでuのprefixをつける
+        uTime: { value: 0 },
+        uColor: { value: new THREE.Color("pink") },
+        uTexture: { value: flagTexture },//textureを宣言
     }
 });
 
 // デバッグを追加
 gui.add(material.uniforms.uFrequency.value, "x")
-    .min(0)
-    .max(20)
-    .step(0.001)
-    .name("frequencyX")
+    .min(0)//最小値
+    .max(20)//最大値
+    .step(0.001)//step
+    .name("frequencyX")//名前
 gui.add(material.uniforms.uFrequency.value, "y")
     .min(0)
     .max(20)
@@ -57,7 +63,8 @@ gui.add(material.uniforms.uFrequency.value, "y")
 // Mesh
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
-
+mesh.scale.y = 2 / 3;//scaleを調整することで、位置を変えることができる。
+// mesh.rotation.x = Math.PI / 2;//90度回転できる！
 window.addEventListener("resize", () => {
     sizes.width = window.innerWidth;
     sizes.height = window.innerHeight;
@@ -99,7 +106,9 @@ const clock = new THREE.Clock();
 
 const animate = () => {
     //時間取得
-    const elapsedTime = clock.getElapsedTime();
+    const elapsedTime = clock.getElapsedTime();//現在の経過時間を取得できる。
+
+    material.uniforms.uTime.value = elapsedTime;//uTimeを毎時間値を更新する
 
     controls.update();
 
