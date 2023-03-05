@@ -33,6 +33,9 @@ const material = new THREE.ShaderMaterial({
     fragmentShader: fragmentShader,
     transparent: true,//透明に
     side: THREE.DoubleSide,//裏側も見れる。
+    uniforms: {
+        uFrequency: { value: new THREE.Vector2(10, 5) },//グローバルに定義 uniformsなのでuのprefixをつける
+    }
 });
 
 // Mesh
