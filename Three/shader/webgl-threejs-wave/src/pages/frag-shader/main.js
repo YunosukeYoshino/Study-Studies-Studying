@@ -4,6 +4,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import vertexShader from './shadars/vertexShader.glsl?raw'
 import fragmentShader from './shadars/fragmentShader.glsl?raw'
 import * as dat from 'lil-gui'
+import flag from "./images/america.png"
 
 // デバッグ
 const gui = new dat.GUI({ width: 300 });
@@ -26,9 +27,11 @@ const scene = new THREE.Scene();
  * Textures
  */
 const textureLoader = new THREE.TextureLoader();
+const flagTexture = textureLoader.load(flag);//texture loadを定義
 
 // Geometry
 const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
+console.log(geometry.attributes.uv.array)//uv座標が確認できる。
 
 // Material
 // ShaderMaterial シェーダーを読み込む
@@ -40,6 +43,8 @@ const material = new THREE.ShaderMaterial({
     uniforms: {
         uFrequency: { value: new THREE.Vector2(10, 5) },//グローバルに定義 uniformsなのでuのprefixをつける
         uTime: { value: 0 },
+        uColor: { value: new THREE.Color("pink") },
+        uTexture: { value: flagTexture },//textureを宣言
     }
 });
 

@@ -1,6 +1,8 @@
 uniform vec2 uFrequency; //Vector2にしたのでvec2型に変更
 uniform float uTime;
 
+varying vec2 vUv;//uv座標は元々用意されている。
+
 void main() {
      // gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
 
@@ -17,4 +19,6 @@ void main() {
      vec4 viewPosition = viewMatrix * modelPosition;
      vec4 projectionPosition = projectionMatrix * viewPosition;
      gl_Position = projectionPosition;
+     vUv = uv;
+
 }
