@@ -39,15 +39,16 @@ const material = new THREE.ShaderMaterial({
     side: THREE.DoubleSide,//裏側も見れる。
     uniforms: {
         uFrequency: { value: new THREE.Vector2(10, 5) },//グローバルに定義 uniformsなのでuのprefixをつける
+        uTime: { value: 0 },
     }
 });
 
 // デバッグを追加
 gui.add(material.uniforms.uFrequency.value, "x")
-    .min(0)
-    .max(20)
-    .step(0.001)
-    .name("frequencyX")
+    .min(0)//最小値
+    .max(20)//最大値
+    .step(0.001)//step
+    .name("frequencyX")//名前
 gui.add(material.uniforms.uFrequency.value, "y")
     .min(0)
     .max(20)
@@ -99,7 +100,9 @@ const clock = new THREE.Clock();
 
 const animate = () => {
     //時間取得
-    const elapsedTime = clock.getElapsedTime();
+    const elapsedTime = clock.getElapsedTime();//現在の経過時間を取得できる。
+
+    material.uniforms.uTime.value = elapsedTime;//uTimeを毎時間値を更新する
 
     controls.update();
 
