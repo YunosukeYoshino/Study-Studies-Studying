@@ -22,6 +22,8 @@ void main() {
      elevation += sin(modelPosition.y * uFrequency.y + uTime) * 0.1;
      modelPosition.z += elevation;
 
+     // modelPosition.y *= 0.6;//直接y座標で位置を変えることで小さくする
+
      vec4 viewPosition = viewMatrix * modelPosition;
      vec4 projectionPosition = projectionMatrix * viewPosition;
      gl_Position = projectionPosition;

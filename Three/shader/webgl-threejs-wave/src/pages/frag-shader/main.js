@@ -63,7 +63,8 @@ gui.add(material.uniforms.uFrequency.value, "y")
 // Mesh
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
-
+mesh.scale.y = 2 / 3;//scaleを調整することで、位置を変えることができる。
+// mesh.rotation.x = Math.PI / 2;//90度回転できる！
 window.addEventListener("resize", () => {
     sizes.width = window.innerWidth;
     sizes.height = window.innerHeight;
