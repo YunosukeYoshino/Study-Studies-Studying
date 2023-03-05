@@ -1,3 +1,5 @@
+uniform float uFrequency;
+
 void main() {
      // gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
 
@@ -8,7 +10,7 @@ void main() {
      *sin関数：波のような形
      *かけることによって周波数を上げる
      */
-     modelPosition.z += sin(modelPosition.x * 10.0) * 0.1;
+     modelPosition.z += sin(modelPosition.x * uFrequency) * 0.1;
 
      vec4 viewPosition = viewMatrix * modelPosition;
      vec4 projectionPosition = projectionMatrix * viewPosition;
