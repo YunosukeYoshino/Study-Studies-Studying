@@ -1,6 +1,5 @@
 import * as THREE from "three";
 
-
 window.addEventListener('DOMContentLoaded', init);
 
 function init() {
@@ -10,6 +9,8 @@ function init() {
         width: window.innerWidth,
         height: window.innerHeight,
     };
+
+
 
     /**
      * resize
@@ -45,34 +46,45 @@ function init() {
     const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height);
     camera.position.set(0, 0, +1000);
 
-    /**
-     * 箱を作成
-    */
+    // 画像を読み込む
+    const loader = new THREE.TextureLoader();
+    const texture = loader.load('img/moon_tx.jpg');
 
-    // new THREE.BoxGeometry(幅, 高さ, 奥行き)
-    const geometry = new THREE.BoxGeometry(400, 400, 400);
+    // 球体を作成
+    const geometry = new THREE.SphereGeometry(300, 30, 30);
+    // const material = new THREE.MeshStandardMaterial({ color: 0XF5F5F5 });
 
-    //THREE.MeshNormalMaterial(適当なカラーを割り振るマテリアル)
-    const material = new THREE.MeshNormalMaterial();
+    // マテリアルにテクスチャーを設定
+    const material = new THREE.MeshStandardMaterial({
+        map: texture
+    });
 
-    // new THREE.Mesh(ジオメトリ,マテリアル)
-    const box = new THREE.Mesh(geometry, material);
+    // メッシュを作成
+    const mesh = new THREE.Mesh(geometry, material);
+    // 3D空間にメッシュを追加
+    scene.add(mesh);
 
+
+    // 平行光源
+    const directionalLight = new THREE.DirectionalLight(0xffffff);
+    directionalLight.position.set(1, 1, 1);
     // シーンに追加
-    scene.add(box);
+    scene.add(directionalLight);
+
+
+    let delta = 0
+    window.addEventListener('wheel', (event) => {
+        delta = + event.deltaY;
+        mesh.rotation.y += 0.001 * delta;
+    })
 
 
     // 初回実行
     tick();
 
-    // 毎フレーム時に実行されるループイベントです
     function tick() {
-
-
         requestAnimationFrame(tick);
-
-        // アニメーション処理をここに書く
-        box.rotation.y += 0.01;
-        renderer.render(scene, camera); // レンダリング
+        // レンダリング
+        renderer.render(scene, camera);
     }
 }
