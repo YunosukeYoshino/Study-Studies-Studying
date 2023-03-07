@@ -1,83 +1,64 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+window.addEventListener('DOMContentLoaded', init);
 
-/**
- * Sizes
- */
-const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-};
+function init() {
 
-// Canvas
-const canvas = document.querySelector("#webgl");
-console.log(canvas);
-// Scene
-const scene = new THREE.Scene();
-
-/**
- * Textures
- */
-const textureLoader = new THREE.TextureLoader();
-
-// Geometry
-const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
-
-// Material
+    // サイズを指定
+    const sizes = {
+        width: window.innerWidth,
+        height: window.innerHeight,
+    };
 
 
-// Mesh
-const mesh = new THREE.Mesh(geometry, material);
-scene.add(mesh);
 
-window.addEventListener("resize", () => {
-    sizes.width = window.innerWidth;
-    sizes.height = window.innerHeight;
+    /**
+     * resize
+    */
+    window.addEventListener("resize", () => {
+        sizes.width = window.innerWidth;
+        sizes.height = window.innerHeight;
 
-    camera.aspect = sizes.width / sizes.height;
-    camera.updateProjectionMatrix();
+        camera.aspect = sizes.width / sizes.height;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(sizes.width, sizes.height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    });
+
+    // レンダラーを作成
+    const renderer = new THREE.WebGLRenderer({
+        canvas: document.querySelector('#webgl')
+    });
 
     renderer.setSize(sizes.width, sizes.height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-});
 
-// Camera
-const camera = new THREE.PerspectiveCamera(
-    75,
-    sizes.width / sizes.height,
-    0.1,
-    100
-);
-camera.position.set(0.25, -0.25, 1);
-scene.add(camera);
 
-// Controls
-const controls = new OrbitControls(camera, canvas);
-controls.enableDamping = true;
+    // シーンを作成(3d空間 オブジェクトや光源の置き場になります。)
+    const scene = new THREE.Scene();
 
-/**
- * Renderer
- */
-const renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
-});
-renderer.setSize(sizes.width, sizes.height);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // カメラを作成 // new THREE.PerspectiveCamera(画角, アスペクト比
+    const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height);
+    camera.position.set(0, 0, +1000);
 
-/**
- * Animate
- */
-const clock = new THREE.Clock();
+    /**
+     * 箱を作成
+    */
 
-const animate = () => {
-    //時間取得
-    const elapsedTime = clock.getElapsedTime();
+    // new THREE.BoxGeometry(幅, 高さ, 奥行き)
+    const geometry = new THREE.BoxGeometry(400, 400, 400);
+    const material = new THREE.MeshNormalMaterial();//THREE.MeshNormalMaterial(適当なカラーを割り振るマテリアル)
+    const box = new THREE.Mesh(geometry, material);
+    scene.add(box);
 
-    controls.update();
+    tick();
 
-    renderer.render(scene, camera);
+    // 毎フレーム時に実行されるループイベントです
+    function tick() {
+        box.rotation.y += 0.01;
+        renderer.render(scene, camera); // レンダリング
 
-    window.requestAnimationFrame(animate);
-};
-
-animate();
+        requestAnimationFrame(tick);
+    }
+}
