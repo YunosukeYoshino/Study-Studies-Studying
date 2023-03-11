@@ -8,13 +8,13 @@ module.exports = {
     mode: "production",
     entry: {
         'main': [
-            "./src/js/main.js",
-            './src/scss/style.scss'
+            "./src/assets/js/main.js",
+            './src/assets/scss/style.scss'
         ]
     },
     output: {
-        path: path.join(__dirname, "theme/assets/"),
-        filename: "js/main.js",
+        path: path.join(__dirname, "./theme"),
+        filename: "assets/js/main.js",
     },
     module: {
         rules: [
@@ -34,14 +34,19 @@ module.exports = {
             },
         }),
         new MiniCssExtractPlugin({
-            filename: 'css/style.css'
+            filename: 'assets/css/style.css'
         }),
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin({
-            patterns: [{
-                from: path.resolve(__dirname, 'src/images'),
-                to: path.resolve(__dirname, 'theme/assets/images'),
-            }]
+            patterns: [
+                {
+                    from: "src",
+                    globOptions: {
+                        ignore: ["**/*.scss", "**/*.js", "**/.DS_Store"]
+                    }
+                }
+            ]
+
         }),
 
     ],

@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://unpkg.com/@splidejs/splide@3.0.9/dist/css/splide.min.css");
+
+/* Layout Layer */
+.l-header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+.l-header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Project Layer */
+.p-header-logo {
+  display: inline-block;
+}
+
+.p-header-logo__link {
+  display: block;
+}
+
+.p-header-nav {
+  display: flex;
+}
+
+.p-header-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.p-header-nav__item {
+  margin-left: 20px;
+}
+
+.p-header-nav__link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.p-header-search {
+  display: flex;
+  align-items: center;
+}
+
+.p-header-search__form {
+  display: flex;
+  margin: 0;
+}
+
+.p-header-search__label {
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.p-header-search__input {
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.p-header-search__button {
+  padding: 5px;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+}
+// スライドのカスタムスタイル
+.splide__slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  background-color: #f0f0f0;
+  color: #333;
+  height: 600px;
+  overflow: hidden;
+}
+.splide__slide img {
+  transform: scale(1.5);
+  opacity: 0;
+}
+.splide__slide.is-active img {
+  animation: slide-animation 0.5s ease-in-out forwards;
+}
+// スライドのアニメーション
+@keyframes slide-animation {
+  0% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
