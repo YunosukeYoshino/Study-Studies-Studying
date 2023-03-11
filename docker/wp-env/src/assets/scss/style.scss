@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://unpkg.com/@splidejs/splide@3.0.9/dist/css/splide.min.css");
 
 /* Layout Layer */
 .l-header {
@@ -73,4 +74,33 @@
   border: none;
   border-radius: 3px;
   font-size: 14px;
+}
+// スライドのカスタムスタイル
+.splide__slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  background-color: #f0f0f0;
+  color: #333;
+  height: 600px;
+  overflow: hidden;
+}
+.splide__slide img {
+  transform: scale(1.5);
+  opacity: 0;
+}
+.splide__slide.is-active img {
+  animation: slide-animation 0.5s ease-in-out forwards;
+}
+// スライドのアニメーション
+@keyframes slide-animation {
+  0% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
